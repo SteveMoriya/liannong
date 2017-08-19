@@ -71,29 +71,29 @@ static NSString *registerURL = @"app/register.jsp";
 //- (YJGuideView *)guideView
 //{
 //    if (!_guideView) {
-//        
+//
 //        _guideView = [[YJGuideView alloc] initWithFrame:CGRectMake(0, 0, kDEVICEWIDTH, kDEVICEHEIGHT)];
-//        
+//
 //        __weak typeof(self) weakSelf = self;
 //        _guideView.scrollFinishBlock = ^(){
-//            
+//
 //            [weakSelf loadWebView:weakSelf.homePageUrlString];
-//            
+//
 //        };
-//        
+//
 //    }
 //    return _guideView;
 //}
 //
 //- (void) initUpdateView {
-//    
+//
 //    _updateView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kDEVICEWIDTH, kDEVICEHEIGHT)];
 //    _updateView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.75];
-//    
+//
 //    UIImageView* tipsImg = [[UIImageView alloc] initWithFrame: CGRectMake(kDEVICEWIDTH / 8, (kDEVICEHEIGHT - kDEVICEWIDTH * 6/8 * 7/5)/2 , kDEVICEWIDTH * 6/8, kDEVICEWIDTH * 6/8 * 7/5)];
 //    tipsImg.image = [UIImage imageNamed:@"UpdateBGImg"];
 //    [_updateView addSubview:tipsImg];
-//    
+//
 //    NSString *str = @"程序本次更新内容: \n1.优化了页面浏览效果 \n2.添加页面背景音乐 \n3.提高了页面的流畅度";
 //    UILabel *lb = [[UILabel alloc]initWithFrame:CGRectMake( kDEVICEWIDTH / 8 + 20, kDEVICEHEIGHT / 2 + 20 , kDEVICEWIDTH / 8 * 6  - 40 , kDEVICEHEIGHT/6)];
 //    lb.textColor = [UIColor darkGrayColor];
@@ -101,43 +101,44 @@ static NSString *registerURL = @"app/register.jsp";
 //    lb.text = str;
 //    lb.numberOfLines = 0; // 最关键的一句
 //    [_updateView addSubview:lb];
-//    
+//
 //    UIButton* updateBtn = [[UIButton alloc] initWithFrame:CGRectMake(kDEVICEWIDTH / 8 + 20 , lb.frame.origin.y + lb.frame.size.height + 10, kDEVICEWIDTH / 8 * 6  - 40, (kDEVICEWIDTH / 8 * 6  - 40)/6 )];
 //    [updateBtn setBackgroundImage:[UIImage imageNamed:@"UPdateBtImg"] forState:UIControlStateNormal];
 //    [updateBtn addTarget:self action:@selector(updateAct) forControlEvents:UIControlEventTouchUpInside];
 //    [_updateView addSubview:updateBtn];
-//    
+//
 //    UIButton* closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(kDEVICEWIDTH * 6/8 + 30, (kDEVICEHEIGHT - kDEVICEWIDTH * 6/8 * 7/5)/2 - 40, 40, 40)];
 //    [closeBtn setBackgroundImage:[UIImage imageNamed:@"CloseUpdateBtImg"] forState:UIControlStateNormal];
 ////    closeBtn.backgroundColor = [UIColor yellowColor];
 //    [closeBtn addTarget:self action:@selector(closeUpdateAct) forControlEvents:UIControlEventTouchUpInside];
 //    [_updateView addSubview:closeBtn];
-//    
-//    
+//
+//
 //}
 //
 //- (void) updateAct {
-//    
+//
 //    [_updateView removeFromSuperview];
-//    
+//
 //    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://itunes.apple.com/cn/app/yi-jia-wang/id%@?l=en&mt=8", AppStore_ID]];
 //    [[UIApplication sharedApplication] openURL:url];
-//    
+//
 //}
 //
 //
 //- (void) closeUpdateAct {
-//    
+//
 //    [_updateView removeFromSuperview];
 //}
 //
 //
-//- (void)initShareView
-//{
-//    _shareView = [[CHShareView alloc] initWithSharePlatfromTypeOptions:TFSharePlatformTypeWeiXin|TFSharePlatformTypeWeixinPengYouQuan|TFSharePlatformTypeQQ|TFSharePlatformTypeZone|TFSharePlatformTypeSinaWeibo];
-//    _shareView.title = @"分享到";
-//    _shareView.delegate = self;
-//}
+
+- (void)initShareView
+{
+    _shareView = [[CHShareView alloc] initWithSharePlatfromTypeOptions:TFSharePlatformTypeWeiXin|TFSharePlatformTypeWeixinPengYouQuan|TFSharePlatformTypeQQ|TFSharePlatformTypeZone|TFSharePlatformTypeSinaWeibo];
+    _shareView.title = @"分享到";
+    _shareView.delegate = self;
+}
 
 
 - (void)viewDidLoad {
@@ -171,30 +172,30 @@ static NSString *registerURL = @"app/register.jsp";
     
     
     
-//    //页面加载逻辑
-//    NSString *userid = [[NSUserDefaults standardUserDefaults] objectForKey:@"userid"];
-//    if (userid) {
-//        _homePageUrlString = [NSString stringWithFormat:@"%@%@&userid=%@",YJBaseURL,homePageURL,userid];
-//    }
-//    else
-//    {
-//        _homePageUrlString = [NSString stringWithFormat:@"%@%@",YJBaseURL,homePageURL];
-//    }
-//    
-//    //首次安装启动展示引导图
-//    BOOL isFirstEnter = [[NSUserDefaults standardUserDefaults] boolForKey:@"FirstEnter"];
-//    if (!isFirstEnter) {
-//        
-//        [self.view addSubview:self.guideView];
-//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"FirstEnter"];
-//    }
-//    else
-//    {
-//        
-//        //[self loadWebView:_homePageUrlString];
-//        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_homePageUrlString]]];
-//        
-//    }
+    //    //页面加载逻辑
+    //    NSString *userid = [[NSUserDefaults standardUserDefaults] objectForKey:@"userid"];
+    //    if (userid) {
+    //        _homePageUrlString = [NSString stringWithFormat:@"%@%@&userid=%@",YJBaseURL,homePageURL,userid];
+    //    }
+    //    else
+    //    {
+    //        _homePageUrlString = [NSString stringWithFormat:@"%@%@",YJBaseURL,homePageURL];
+    //    }
+    //
+    //    //首次安装启动展示引导图
+    //    BOOL isFirstEnter = [[NSUserDefaults standardUserDefaults] boolForKey:@"FirstEnter"];
+    //    if (!isFirstEnter) {
+    //
+    //        [self.view addSubview:self.guideView];
+    //        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"FirstEnter"];
+    //    }
+    //    else
+    //    {
+    //
+    //        //[self loadWebView:_homePageUrlString];
+    //        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_homePageUrlString]]];
+    //
+    //    }
     
     [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:homePageURL]]];
     
@@ -239,15 +240,15 @@ static NSString *registerURL = @"app/register.jsp";
     //4当前版本号小于商店版本号,就更新
     if([currentVersion floatValue] < [appStoreVersion floatValue])
     {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"版本有更新" message:[NSString stringWithFormat:@"检测到新版本(%@),是否更新?",appStoreVersion] delegate:self cancelButtonTitle:@"取消"otherButtonTitles:@"更新",nil];
-//        [alert show];
+        //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"版本有更新" message:[NSString stringWithFormat:@"检测到新版本(%@),是否更新?",appStoreVersion] delegate:self cancelButtonTitle:@"取消"otherButtonTitles:@"更新",nil];
+        //        [alert show];
         
-//        _UpdateView = [[UpdateGuideView alloc] initWithFrame:CGRectMake(0, 0,kDEVICEWIDTH , kDEVICEHEIGHT)];
-//        [self.view addSubview:_UpdateView];
-//        
-//        [self.view bringSubviewToFront:_UpdateView];
+        //        _UpdateView = [[UpdateGuideView alloc] initWithFrame:CGRectMake(0, 0,kDEVICEWIDTH , kDEVICEHEIGHT)];
+        //        [self.view addSubview:_UpdateView];
+        //
+        //        [self.view bringSubviewToFront:_UpdateView];
         
-//        [self initUpdateView];
+        //        [self initUpdateView];
         [self.view addSubview:_updateView];
         
     }else{
@@ -337,93 +338,93 @@ static NSString *registerURL = @"app/register.jsp";
 - (void)userContentController:(WKUserContentController *)userContentController
       didReceiveScriptMessage:(WKScriptMessage *)message {
     
-//    //        message.body {
-//    //            content =     {
-//    //                content = "http://www.yjall.cn/image/globkey2.png";
-//    //                title = "\U6613\U5bb6\U7f51\U9001\U60a8100\U5143\U65b0\U7528\U6237\U5927\U793c\U5305\Uff01";
-//    //                url = "http://www.yjall.cn/app/invitationaction!invitation.action?invitationCode=whwouj";
-//    //            };
-//    //            function = showShareIos;
-//    //        }
-//    
-//    
-//    //        message.body {
-//    //            function = scanQRCode;
-//    //        }
-//    
-//    
-//    //    message.body {
-//    //        content = lastestOrder;
-//    //        function = playAudio;
-//    //    }
-//    
-//    
-//    //    message.body {
-//    //        content = "http://www.baidu.com/'";
-//    //        function = openUrl;
-//    //    }
-//    
-//    
-//    
-//    NSLog(@"message.name %@",message.name);
-//    NSLog(@"message.body %@",message.body);
-//    
-//    NSDictionary *dic = message.body;
-//    //    NSLog(@"dic %@",dic);
-//    //    NSLog(@"function  %@",dic[@"function"]);
-//    
-//    if ( [dic[@"function"] isEqualToString:@"scanQRCode"]) {
-//        
-//        YJScanQRViewController *scanQRViewController = [[YJScanQRViewController alloc] init];
-//        scanQRViewController.scanQRFinishedBlock = ^(NSString *url){
-//            
-//            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
-//        };
-//        [self.navigationController pushViewController:scanQRViewController animated:YES];
-//        
-//    }
-//    
-//    else if ([dic[@"function"] isEqualToString:@"playAudio"] ) {
-//        
-//        [[YJAudioPlayManager shareInstance] playAudioWithName:dic[@"content"]];
-//        
-//    }
-//    
-//    else if ([dic[@"function"] isEqualToString:@"openUrl"] ) {
-//        
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:dic[@"content"]]];
-//        
-//    }
-//    
-//    
-//    else if ([dic[@"function"] isEqualToString:@"showShareIos"] ) {
-//        
-//        NSDictionary* shareDic = dic[@"content"];
-//        
-//        _shareUrl = shareDic[@"url"];
-//        _shareTitle = shareDic[@"title"];
-//        _shareContent = shareDic[@"content"];
-//        _shareImgUrl = shareDic[@"pic"];
-//        
-//        [self initShareView];
-//        
-//        [_shareView showInView:self.view];
-//        
-//    }
-//    
-//    else if ([dic[@"function"] isEqualToString:@"getYijiawangUserId"] ) {
-//        
-//        NSString *userid = dic[@"content"];
-//        
-//        //设置别名和tag
-//        [JPUSHService setTags:[NSSet setWithObject:userid] alias:userid fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
-//            
-//            //NSLog(@"___%@",iAlias);
-//        }];
-//        
-//        [[NSUserDefaults standardUserDefaults] setObject:userid forKey:@"userid"];
-//        
-//    }
+    //    //        message.body {
+    //    //            content =     {
+    //    //                content = "http://www.yjall.cn/image/globkey2.png";
+    //    //                title = "\U6613\U5bb6\U7f51\U9001\U60a8100\U5143\U65b0\U7528\U6237\U5927\U793c\U5305\Uff01";
+    //    //                url = "http://www.yjall.cn/app/invitationaction!invitation.action?invitationCode=whwouj";
+    //    //            };
+    //    //            function = showShareIos;
+    //    //        }
+    //
+    //
+    //    //        message.body {
+    //    //            function = scanQRCode;
+    //    //        }
+    //
+    //
+    //    //    message.body {
+    //    //        content = lastestOrder;
+    //    //        function = playAudio;
+    //    //    }
+    //
+    //
+    //    //    message.body {
+    //    //        content = "http://www.baidu.com/'";
+    //    //        function = openUrl;
+    //    //    }
+    //
+    //
+    //
+    //    NSLog(@"message.name %@",message.name);
+    //    NSLog(@"message.body %@",message.body);
+    //
+    //    NSDictionary *dic = message.body;
+    //    //    NSLog(@"dic %@",dic);
+    //    //    NSLog(@"function  %@",dic[@"function"]);
+    //
+    //    if ( [dic[@"function"] isEqualToString:@"scanQRCode"]) {
+    //
+    //        YJScanQRViewController *scanQRViewController = [[YJScanQRViewController alloc] init];
+    //        scanQRViewController.scanQRFinishedBlock = ^(NSString *url){
+    //
+    //            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+    //        };
+    //        [self.navigationController pushViewController:scanQRViewController animated:YES];
+    //
+    //    }
+    //
+    //    else if ([dic[@"function"] isEqualToString:@"playAudio"] ) {
+    //
+    //        [[YJAudioPlayManager shareInstance] playAudioWithName:dic[@"content"]];
+    //
+    //    }
+    //
+    //    else if ([dic[@"function"] isEqualToString:@"openUrl"] ) {
+    //
+    //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:dic[@"content"]]];
+    //
+    //    }
+    //
+    //
+    //    else if ([dic[@"function"] isEqualToString:@"showShareIos"] ) {
+    //
+    //        NSDictionary* shareDic = dic[@"content"];
+    //
+    //        _shareUrl = shareDic[@"url"];
+    //        _shareTitle = shareDic[@"title"];
+    //        _shareContent = shareDic[@"content"];
+    //        _shareImgUrl = shareDic[@"pic"];
+    //
+    //        [self initShareView];
+    //
+    //        [_shareView showInView:self.view];
+    //
+    //    }
+    //
+    //    else if ([dic[@"function"] isEqualToString:@"getYijiawangUserId"] ) {
+    //
+    //        NSString *userid = dic[@"content"];
+    //
+    //        //设置别名和tag
+    //        [JPUSHService setTags:[NSSet setWithObject:userid] alias:userid fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
+    //
+    //            //NSLog(@"___%@",iAlias);
+    //        }];
+    //
+    //        [[NSUserDefaults standardUserDefaults] setObject:userid forKey:@"userid"];
+    //
+    //    }
     
     
     NSLog(@"message.name %@",message.name);
@@ -452,7 +453,20 @@ static NSString *registerURL = @"app/register.jsp";
         
     }
     
-    
+    else if ([dic[@"function"] isEqualToString:@"showShareIos"] ) {
+        
+        NSDictionary* shareDic = dic[@"content"];
+        
+        _shareUrl = shareDic[@"url"];
+        _shareTitle = shareDic[@"title"];
+        _shareContent = shareDic[@"content"];
+        _shareImgUrl = shareDic[@"pic"];
+        
+        [self initShareView];
+        
+        [_shareView showInView:self.view];
+        
+    }
     
 }
 
@@ -465,43 +479,43 @@ static NSString *registerURL = @"app/register.jsp";
 //    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
 //    UMShareWebpageObject  *shareObject = [UMShareWebpageObject shareObjectWithTitle:_shareTitle descr:_shareContent thumImage:shareImage];
 //    shareObject.webpageUrl = _shareUrl;
-//    
+//
 //    messageObject.shareObject = shareObject;
 //    messageObject.text = [NSString stringWithFormat:@"%@%@",_shareContent,_shareUrl];
-//    
+//
 //    if (TFSharePlatformType == TFSharePlatformTypeWeiXin)
 //    {
 //        [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_WechatSession messageObject:messageObject currentViewController:self completion:^(id result, NSError *error) {
-//            
-//            
+//
+//
 //        }];
 //    }
 //    else if (TFSharePlatformType == TFSharePlatformTypeWeixinPengYouQuan)
 //    {
 //        [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_WechatTimeLine messageObject:messageObject currentViewController:self completion:^(id result, NSError *error) {
-//            
-//            
+//
+//
 //        }];
 //    }
 //    else if (TFSharePlatformType == TFSharePlatformTypeZone)
 //    {
-//        
+//
 //        [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_Qzone messageObject:messageObject currentViewController:self completion:^(id result, NSError *error) {
-//            
+//
 //        }];
-//        
+//
 //    }
 //    else if (TFSharePlatformType == TFSharePlatformTypeQQ)
 //    {
 //        [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_QQ messageObject:messageObject currentViewController:self completion:^(id result, NSError *error) {
-//            
-//            
+//
+//
 //        }];
 //    }
 //    else if (TFSharePlatformType == TFSharePlatformTypeSinaWeibo){
-//        
+//
 //        [[UMSocialManager defaultManager] shareToPlatform:UMSocialPlatformType_Sina messageObject:messageObject currentViewController:self completion:^(id result, NSError *error) {
-//            
+//
 //        }];
 //    }
 //}
